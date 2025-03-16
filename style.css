@@ -5,30 +5,23 @@ body {
     padding: 0;
     background-color: #00ff00;
     color: #333;
-    padding-top: 80px; /* Prevent content from hiding under fixed header */
 }
 
 /* Header */
 header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    padding: 20px;
-    text-align: center;
+    position: absolute;  /* Fix the header to the top */
+    top: 0;              /* Align to the top of the page */
+    left: 50%;           /* Move to the center horizontally */
+    transform: translateX(-50%); /* Shift left by 50% of its own width */
     background: linear-gradient(to right, #d4af37, #b76e79);
     color: white;
+    padding: 20px;
     font-family: 'Great Vibes', cursive;
     font-size: 2rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    letter-spacing: 2px;
-    word-spacing: 4px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    text-align: center;
     z-index: 1000;
 }
+
 
 /* Navigation */
 nav {
