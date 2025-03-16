@@ -3,44 +3,71 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f1e5;
+    background-color: #00ff00;
     color: #333;
+    padding-top: 80px; /* Prevent content from hiding under fixed header */
 }
 
 /* Header */
 header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 20px;
     text-align: center;
     background: linear-gradient(to right, #d4af37, #b76e79);
     color: white;
-    padding: 20px;
     font-family: 'Great Vibes', cursive;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 /* Navigation */
+nav {
+    position: fixed;
+    top: 70px; /* Below the header */
+    width: 100%;
+    background-color: #a0522d;
+    z-index: 999;
+}
+
 nav ul {
     list-style: none;
-    padding: 0;
-    text-align: center;
-    background-color: #a0522d;
+    padding: 10px 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 nav ul li {
-    display: inline;
-    padding: 15px;
+    padding: 15px 20px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #d4af37; /* Gold color on hover */
 }
 
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 50px;
-    background: url('images/hero.jpg') no-repeat center;
+    padding: 100px 20px;
+    background: url('../images/hero.jpg') no-repeat center center;
     background-size: cover;
     color: white;
 }
@@ -51,9 +78,14 @@ nav ul li a {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-/* Products */
+.hero .btn:hover {
+    background-color: #b76e79;
+}
+
+/* Products Section */
 #products {
     text-align: center;
     padding: 40px;
@@ -62,6 +94,7 @@ nav ul li a {
 .gallery {
     display: flex;
     justify-content: center;
+    align-items: center; /* Align items vertically */
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -71,6 +104,11 @@ nav ul li a {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product:hover {
+    transform: scale(1.05);
 }
 
 .product img {
@@ -79,7 +117,7 @@ nav ul li a {
     border-radius: 5px;
 }
 
-/* Contact */
+/* Contact Section */
 #contact {
     text-align: center;
     padding: 30px;
@@ -88,8 +126,11 @@ nav ul li a {
 form input, form textarea {
     display: block;
     width: 80%;
+    max-width: 400px;
     margin: 10px auto;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 button {
@@ -97,13 +138,19 @@ button {
     color: white;
     padding: 10px 20px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #a0522d;
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     background-color: #a0522d;
     color: white;
 }
