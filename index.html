@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Store | Indian & Arab Fashion</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>✨ BANGLE SELLER ✨</h1>
+        <h2>Blending Indian & Arab Elegance</h2>
+    </header>
+
+    <!-- Navigation -->
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact" onclick="showContact()">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Contact Section (Initially Hidden) -->
+<section id="contact" style="display: none;">
+    <h2>Contact Us</h2>
+    <p><strong>Phone:</strong> +974 1234 5678</p>
+    <p><strong>Email:</strong> contact@fancystore.qa</p>
+    <p><strong>Address:</strong> Doha, Qatar</p>
+</section>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h2>Timeless Elegance, Modern Charm</h2>
+        <p>Explore our exclusive collection of Indian & Arab fashion.</p>
+        <a href="#products" class="btn">Shop Now</a>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Our Collection</h2>
+        <div class="gallery">
+            <div class="product">
+                <img src="images/product1.jpg" alt="Traditional Dress">
+                <p>Royal Indian Saree - $1</p>
+            </div>
+            <div class="product">
+                <img src="images/product2.jpg" alt="Arabian Abaya">
+                <p>Elegant Arabian Abaya - $1</p>
+            </div>
+            <div class="product">
+                <img src="images/product3.jpg" alt="Gold Jewelry">
+                <p>Luxury Gold Jewelry - $1</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <p id="responseMessage"></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Bangle seller. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
