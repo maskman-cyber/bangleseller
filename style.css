@@ -8,19 +8,22 @@ body {
 }
 
 /* Header */
+/* Header */
 header {
-    position: absolute;  /* Fix the header to the top */
-    top: 0;              /* Align to the top of the page */
-    left: 50%;           /* Move to the center horizontally */
-    transform: translateX(-50%); /* Shift left by 50% of its own width */
+    position: fixed;            /* Fix the header at the top of the page */
+    top: 0;                     /* Align it to the top of the page */
+    left: 50%;                  /* Position it in the middle horizontally */
+    transform: translateX(-50%); /* Center it horizontally by shifting it left */
     background: linear-gradient(to right, #d4af37, #b76e79);
     color: white;
     padding: 20px;
     font-family: 'Great Vibes', cursive;
     font-size: 2rem;
     text-align: center;
-    z-index: 1000;
+    z-index: 1000;              /* Ensure it stays on top of other content */
+    width: auto;                /* Let the width adapt to the content */
 }
+
 
 
 /* Navigation */
