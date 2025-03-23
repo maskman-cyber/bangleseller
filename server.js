@@ -59,9 +59,10 @@ app.post('/submit-form', async (req, res) => {
         res.status(200).json({ message: "Form submitted successfully!" });
     } catch (error) {
         console.error("Error submitting form:", error);
-        res.status(500).json({ message: "Error submitting form" });
+        res.status(500).json({ message: "Error submitting form", error: error.stack });
     }
 });
+
 
 // 📌 4️⃣ Start the server
 app.listen(PORT, () => {
