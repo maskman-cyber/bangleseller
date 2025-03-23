@@ -184,17 +184,25 @@ nav ul li a:hover {
     100% { transform: translateX(0%); }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-    .modal-content {
-        width: 90%;
-        height: 90vh;
+    .outlet-section {
+        width: 90%; /* Makes it take up 90% of the screen width */
+        max-width: 350px; /* Prevents it from being too big */
+        right: -100%; /* Ensures it is hidden initially */
     }
 
-    .slider {
-        height: 300px; /* Smaller height for mobile */
+    .outlet-section.active {
+        right: 0; /* Slides in properly */
+    }
+
+    .close-btn {
+        top: 5px; /* Adjust position for smaller screens */
+        right: 10px;
+        font-size: 16px;
+        padding: 4px 8px;
     }
 }
+
 
 
 
