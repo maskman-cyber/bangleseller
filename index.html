@@ -31,10 +31,32 @@
     <div class="outlet-section" id="outletSection">
         <button class="close-btn" id="closeBtn">X</button>
         <h2>Our Outlets</h2>
-        <div class="outlet">📍 Outlet 1 - Inside New Indian Supermarket Airport/St Matar Qadeem-Qatar</div>
-        <div class="outlet">📍 Outlet 2 - Behind Safari Hypermarket Shop No:16 Building No:16/Barwa Village-Qatar</div>
-        <div class="outlet">📍 Outlet 3 - Izghawa/Rawabi Hypermarket Building/Ground Floor</div>
+        <div class="outlet" data-id="1">📍 Outlet 1 - Inside New Indian Supermarket Airport/St Matar Qadeem-Qatar</div>
+        <div class="outlet" data-id="2">📍 Outlet 2 - Behind Safari Hypermarket Shop No:16 Building No:16/Barwa Village-Qatar</div>
+        <div class="outlet" data-id="3">📍 Outlet 3 - Izghawa/Rawabi Hypermarket Building/Ground Floor</div>
     </div>
+
+    <!-- Shop Details Modal -->
+    <div class="modal" id="shopModal">
+        <div class="modal-content">
+                <span class="close-btn" id="modalClose">&times;</span>
+                <h2 id="shopName"></h2>
+
+                <!-- Image Slider Container -->
+                <div class="slider">
+                        <div class="slider-wrapper">
+                                <img class="slide" src="shop1.jpg" alt="Shop Image 1">
+                                <img class="slide" src="shop2.jpg" alt="Shop Image 2">
+                                <img class="slide" src="shop3.jpg" alt="Shop Image 3">
+                        </div>
+        </div>
+        
+        <p id="shopAddress"></p>
+        <p><strong>Contact:</strong> <span id="shopContact"></span></p>
+        <a id="shopLocation" href="#" target="_blank">📍 View Location</a>
+        </div>
+    </div>
+
 
 
     <main>

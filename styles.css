@@ -108,14 +108,104 @@ nav ul li a:hover {
     border-radius: 50%;
 }
 
+/* Full-screen modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9); /* Dark background for focus */
+    z-index: 9999; /* Ensures it stays on top */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content Centering */
+.modal-content {
+    width: 70%;
+    height: 80vh;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Close Button */
+.modal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Image Slider */
+.slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 400px; /* Increased height for better visibility */
+}
+
+.slider-wrapper {
+    display: flex;
+    width: 300%;
+    animation: slide 6s infinite linear;
+}
+
+.slide {
+    width: 33.33%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Resize images inside the modal slider */
+.slider-wrapper img {
+    width: 200%;  /* Make the image take full width */
+    max-height: 500px;  /* Limit height for consistency */
+    object-fit: fill; /* Ensures image fits without distortion */
+    border-radius: 5px;  /* Optional: Adds smooth edges */
+}
+
+/* Animation for smooth sliding */
+@keyframes slide {
+    0% { transform: translateX(0%); }
+    22% { transform: translateX(-22.22%); }
+    44% { transform: translateX(-44.44%); }
+    66% { transform: translateX(-66.66%); }
+    100% { transform: translateX(0%); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        height: 90vh;
+    }
+
+    .slider {
+        height: 300px; /* Smaller height for mobile */
+    }
+}
+
+
 
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 100px 20px;
+    padding: 30px 20px;
+    font-size: 20px;
     background: url('../images/hero.jpg') no-repeat center center;
     background-size: cover;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .hero .btn {
