@@ -68,20 +68,17 @@ const sendEmail = async (formData) => {
 // ✅ 3️⃣ API Route to Handle Contact Form Submission (With Validation)
 app.post('/submit-form', async (req, res) => {
     try {
+        console.log("📥 Raw request body received:", req.body); // Debug log
+
         const { name, email, message } = req.body;
 
-        // Validation: Check if fields are empty
-        if (!name || !email || !message) {
-            return res.status(400).json({ message: "❌ All fields (name, email, message) are required!" });
+        // Ensure all fields are present and not empty
+        if (!name?.trim() || !email?.trim() || !message?.trim()) {
+            console.error("❌ Missing or empty fields:", { name, email, message });
+            return res.status(400).json({ message: "❌ All fields (name, email, message) are required and cannot be empty!" });
         }
 
-        // Validate Email Format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return res.status(400).json({ message: "❌ Invalid email format!" });
-        }
-
-        console.log("📥 Received contact form data:", req.body);
+        console.log("✅ Validated contact form data:", { name, email, message });
 
         saveToFile(req.body); // Save data to file
         await sendEmail(req.body); // Send email
@@ -92,6 +89,7 @@ app.post('/submit-form', async (req, res) => {
         res.status(500).json({ message: "❌ Internal server error" });
     }
 });
+
 
 
 // ✅ 4️⃣ Health Check Route
