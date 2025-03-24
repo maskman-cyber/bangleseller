@@ -63,13 +63,20 @@ app.post('/submit-form', async (req, res) => {
     try {
         const { name, email, message } = req.body;
 
+        // Validation: Check if fields are empty
         if (!name || !email || !message) {
             return res.status(400).json({ message: "❌ All fields (name, email, message) are required!" });
         }
 
+        // Validate Email Format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({ message: "❌ Invalid email format!" });
+        }
+
         console.log("📥 Received contact form data:", req.body);
 
-        saveToFile(req.body); // Save data to a file
+        saveToFile(req.body); // Save data to file
         await sendEmail(req.body); // Send email
 
         res.status(200).json({ message: "✅ Form submitted successfully!" });
@@ -78,6 +85,7 @@ app.post('/submit-form', async (req, res) => {
         res.status(500).json({ message: "❌ Internal server error" });
     }
 });
+
 
 // ✅ 4️⃣ Health Check Route
 app.get('/', (req, res) => {
