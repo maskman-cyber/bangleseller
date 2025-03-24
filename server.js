@@ -53,7 +53,10 @@ const saveToFile = (data) => {
 // ✅ 2️⃣ Function to Save Contact Form Data to Firebase Firestore
 const saveToFirebase = async (data) => {
     try {
-        const docRef = await addDoc(collection(db, "contacts"), data);
+        const docRef = await addDoc(collection(db, "contacts"), {
+            ...data,  // Include IP in Firestore
+            timestamp: new Date()
+        });
         console.log(`🔥 Data saved to Firestore with ID: ${docRef.id}`);
     } catch (error) {
         console.error("❌ Error saving to Firestore:", error);
@@ -104,11 +107,17 @@ app.post('/submit-form', async (req, res) => {
             return res.status(400).json({ message: "❌ All fields (name, email, message) are required and cannot be empty!" });
         }
 
-        console.log("✅ Validated contact form data:", { name, email, message });
+        // ✅ Capture IP Address
+        const userIp = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress;
 
-        saveToFile(req.body); // Save data to file
-        await saveToFirebase(req.body); // Save data to Firebase
-        await sendEmail(req.body); // Send email
+        // ✅ Prepare Data with IP
+        const formData = { name, email, message, ip: userIp, timestamp: new Date().toISOString() };
+
+        console.log("✅ Validated contact form data:", formData);
+
+        saveToFile(formData); // Save data to file
+        await saveToFirebase(formData); // Save data to Firebase
+        await sendEmail(formData); // Send email
 
         res.status(200).json({ message: "✅ Form submitted successfully!" });
     } catch (error) {
@@ -116,6 +125,7 @@ app.post('/submit-form', async (req, res) => {
         res.status(500).json({ message: "❌ Internal server error" });
     }
 });
+
 
 // ✅ 5️⃣ Health Check Route
 app.get('/', (req, res) => {
