@@ -6,6 +6,23 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
 
+// ✅ Firebase Firestore Setup
+const { initializeApp } = require("firebase/app");
+const { getFirestore, collection, addDoc } = require("firebase/firestore");
+
+const firebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
 const app = express();
 const PORT = process.env.PORT || 5000; // Port can be set via environment variables
 
@@ -27,13 +44,23 @@ const saveToFile = (data) => {
         existingData.push(data);
         fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
 
-        console.log("📂 Contact form data saved successfully.");
+        console.log("📂 Contact form data saved to file.");
     } catch (error) {
         console.error("❌ Error saving to file:", error);
     }
 };
 
-// ✅ 2️⃣ Function to Send Email using Nodemailer (With Error Handling)
+// ✅ 2️⃣ Function to Save Contact Form Data to Firebase Firestore
+const saveToFirebase = async (data) => {
+    try {
+        const docRef = await addDoc(collection(db, "contacts"), data);
+        console.log(`🔥 Data saved to Firestore with ID: ${docRef.id}`);
+    } catch (error) {
+        console.error("❌ Error saving to Firestore:", error);
+    }
+};
+
+// ✅ 3️⃣ Function to Send Email using Nodemailer (With Error Handling)
 const sendEmail = async (formData) => {
     try {
         if (!formData.email?.trim()) {
@@ -64,8 +91,7 @@ const sendEmail = async (formData) => {
     }
 };
 
-
-// ✅ 3️⃣ API Route to Handle Contact Form Submission (With Validation)
+// ✅ 4️⃣ API Route to Handle Contact Form Submission (With Validation)
 app.post('/submit-form', async (req, res) => {
     try {
         console.log("📥 Raw request body received:", req.body); // Debug log
@@ -81,6 +107,7 @@ app.post('/submit-form', async (req, res) => {
         console.log("✅ Validated contact form data:", { name, email, message });
 
         saveToFile(req.body); // Save data to file
+        await saveToFirebase(req.body); // Save data to Firebase
         await sendEmail(req.body); // Send email
 
         res.status(200).json({ message: "✅ Form submitted successfully!" });
@@ -90,14 +117,12 @@ app.post('/submit-form', async (req, res) => {
     }
 });
 
-
-
-// ✅ 4️⃣ Health Check Route
+// ✅ 5️⃣ Health Check Route
 app.get('/', (req, res) => {
     res.send("✅ Server is running smoothly!");
 });
 
-// ✅ 5️⃣ Start the Server
+// ✅ 6️⃣ Start the Server
 app.listen(PORT, () => {
     console.log(`🚀 Server is running at http://localhost:${PORT}`);
 });
