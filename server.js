@@ -36,6 +36,12 @@ const saveToFile = (data) => {
 // ✅ 2️⃣ Function to Send Email using Nodemailer (With Error Handling)
 const sendEmail = async (formData) => {
     try {
+        if (!formData.email?.trim()) {
+            throw new Error("❌ No recipient email provided.");
+        }
+
+        console.log("📧 Sending email to:", formData.email);
+
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -46,17 +52,18 @@ const sendEmail = async (formData) => {
 
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: formData.email, // Send to user who filled the form
+            to: formData.email.trim(),
             subject: 'Thank you for contacting us!',
             text: `Hello ${formData.name},\n\nThank you for reaching out! We will get back to you soon.\n\nBest regards,\nBangle Seller Team`
         };
 
         await transporter.sendMail(mailOptions);
-        console.log(`📧 Email sent successfully to ${formData.email}`);
+        console.log(`✅ Email sent successfully to ${formData.email}`);
     } catch (error) {
         console.error("❌ Error sending email:", error);
     }
 };
+
 
 // ✅ 3️⃣ API Route to Handle Contact Form Submission (With Validation)
 app.post('/submit-form', async (req, res) => {
