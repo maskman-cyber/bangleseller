@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "email": "test@example.com",
+    "message": "Hello!",
+    "name": "Test User"
+  },
+  {
+    "email": "test@example.\ncom",
+    "message": "Hellopoda!",
+    "name": "maskmn"
+  }
+]
