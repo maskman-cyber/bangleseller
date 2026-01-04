@@ -42,12 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Slide-in Effect for Outlets
-    const homeBtn = document.querySelector('a[href="#home"]');
+    const OutletsBtn = document.querySelector('a[href="#Outlets"]');
     const outletSection = document.getElementById("outletSection");
     const closeBtn = document.getElementById("closeBtn");
 
-    if (homeBtn && outletSection && closeBtn) {
-        homeBtn.addEventListener("click", (e) => {
+    if (OutletsBtn && outletSection && closeBtn) {
+        OutletsBtn.addEventListener("click", (e) => {
             e.preventDefault(); // Prevent default anchor behavior
             outletSection.classList.add("active");
         });
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Close when clicking outside
         document.addEventListener("click", (e) => {
-            if (!outletSection.contains(e.target) && e.target !== homeBtn) {
+            if (!outletSection.contains(e.target) && e.target !== OutletsBtn) {
                 outletSection.classList.remove("active");
             }
         });
@@ -79,14 +79,14 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Outlet 1 - New Indian Supermarket",
             images: ["images/shop1.jpg", "images/shop2.jpg", "images/shop3.jpg"],
             address: "Airport/St Matar Qadeem, Qatar",
-            contact: "+974 1234 5678",
+            contact: "+974 77675851",
             location: "https://maps.google.com/?q=New+Indian+Supermarket+Qatar",
         },
         2: {
             name: "Outlet 2 - Safari Hypermarket",
             images: ["images/shop4.jpg", "images/shop5.jpg", "images/shop6.jpg"],
             address: "Behind Safari Hypermarket, Barwa Village, Qatar",
-            contact: "+974 8765 4321",
+            contact: "+974 30665350",
             location: "https://maps.google.com/?q=Safari+Hypermarket+Qatar",
         },
         3: {
@@ -96,6 +96,13 @@ document.addEventListener("DOMContentLoaded", function () {
             contact: "+974 1122 3344",
             location: "https://maps.google.com/?q=Rawabi+Hypermarket+Qatar",
         },
+        4: {
+            name: "Outlet 4 - Souq al dira ",
+            images: ["images/shop7.jpg", "images/shop8.jpg", "images/shop9.jpg"],
+            address: "Souq al dira",
+            contact: "+974 1122 3344",
+            location: "https://maps.google.com/?q=Rawabi+Hypermarket+Qatar",
+        }       
     };
 
     // Function to update modal content
